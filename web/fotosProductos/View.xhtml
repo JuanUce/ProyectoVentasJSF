@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FotosProductosViewDlg" widgetVar="FotosProductosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFotosProductosTitle}">
+            <h:form id="FotosProductosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{fotosProductosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFotosProductosLabel_id}"/>
+                        <h:outputText value="#{fotosProductosController.selected.id}" title="#{bundle.ViewFotosProductosTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewFotosProductosLabel_ruta}"/>
+                        <h:outputText value="#{fotosProductosController.selected.ruta}" title="#{bundle.ViewFotosProductosTitle_ruta}"/>
+                        <h:outputText value="#{bundle.ViewFotosProductosLabel_status}"/>
+                        <h:outputText value="#{fotosProductosController.selected.status}" title="#{bundle.ViewFotosProductosTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewFotosProductosLabel_idProducto}"/>
+                        <h:outputText value="#{fotosProductosController.selected.idProducto}" title="#{bundle.ViewFotosProductosTitle_idProducto}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FotosProductosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

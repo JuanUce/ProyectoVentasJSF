@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FotosProductosEditDlg" widgetVar="FotosProductosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFotosProductosTitle}">
+            <h:form id="FotosProductosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{fotosProductosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFotosProductosLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{fotosProductosController.selected.id}" title="#{bundle.EditFotosProductosTitle_id}" required="true" requiredMessage="#{bundle.EditFotosProductosRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditFotosProductosLabel_ruta}" for="ruta" />
+                        <p:inputText id="ruta" value="#{fotosProductosController.selected.ruta}" title="#{bundle.EditFotosProductosTitle_ruta}" required="true" requiredMessage="#{bundle.EditFotosProductosRequiredMessage_ruta}"/>
+                        <p:outputLabel value="#{bundle.EditFotosProductosLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{fotosProductosController.selected.status}" title="#{bundle.EditFotosProductosTitle_status}" required="true" requiredMessage="#{bundle.EditFotosProductosRequiredMessage_status}"/>
+                        <p:outputLabel value="#{bundle.EditFotosProductosLabel_idProducto}" for="idProducto" />
+                        <p:selectOneMenu id="idProducto" value="#{fotosProductosController.selected.idProducto}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{productosController.itemsAvailableSelectOne}"
+                                           var="idProductoItem"
+                                           itemValue="#{idProductoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{fotosProductosController.update}" value="#{bundle.Save}" update="display,:FotosProductosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FotosProductosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FotosProductosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
